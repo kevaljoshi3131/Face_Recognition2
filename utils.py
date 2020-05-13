@@ -51,7 +51,7 @@ def get_outputs_names(net):
 # Draw the predicted bounding box
 def draw_predict(frame, conf, left, top, right, bottom):
     # Draw a bounding box.
-    cv2.rectangle(frame, (left, top), (right, bottom), COLOR_YELLOW, 2)
+    cv2.rectangle(frame, (left, top), (right, bottom), COLOR_YELLOW, 5)
 
     text = '{:.2f}'.format(conf)
 
@@ -60,7 +60,7 @@ def draw_predict(frame, conf, left, top, right, bottom):
 
     top = max(top, label_size[1])
     cv2.putText(frame, text, (left, top - 4), cv2.FONT_HERSHEY_SIMPLEX, 0.4,
-                COLOR_WHITE, 1)
+                COLOR_RED, 1)
 
 
 def post_process(frame, outs, conf_threshold, nms_threshold):
@@ -142,8 +142,8 @@ def refined_box(left, top, width, height):
     bottom = top + height
 
     original_vert_height = bottom - top
-    top = int(top + original_vert_height * 0.15)
-    bottom = int(bottom - original_vert_height * 0.05)
+    top = int(top + original_vert_height * 0.00)
+    bottom = int(bottom - original_vert_height * 0.000)
 
     margin = ((bottom - top) - (right - left)) // 2
     left = left - margin if (bottom - top - right + left) % 2 == 0 else left - margin - 1
